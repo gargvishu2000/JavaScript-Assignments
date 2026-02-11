@@ -6,3 +6,15 @@
 //  - HH:MM::SS (Eg. 13:45:23)
 
 //  - HH:MM::SS AM/PM (Eg 01:45:23 PM)
+
+setInterval(cb,1000)
+
+function cb(){
+    let d=new Date()
+    let h=d.getHours();
+    let m=d.getMinutes();
+    let s=d.getSeconds();
+    console.log((h),":",(m),":",(s));
+}
+
+
