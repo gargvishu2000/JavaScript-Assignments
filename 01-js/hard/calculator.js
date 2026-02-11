@@ -17,6 +17,52 @@
   - `npm run test-calculator`
 */
 
-class Calculator { }
+class Calculator { 
+  constructor(){
+    this.result=0;
+  }
+
+  add(a){
+    this.result+=a;
+    return this.result
+  }
+  subtract(a){
+    this.result-=a;
+    return this.result
+  }
+  multiply(a){
+    this.result*=a;
+    return this.result;
+  }
+  divide(a){
+    this.result=this.result/a;
+    return this.result
+  }
+  clear(){
+    this.result=0
+    return this
+  }
+  getResult(){
+    return this.result;
+  }
+  calculate(expression){
+    // Remove extra spaces
+    const cleaned = expression.replace(/\s+/g, ' ').trim();
+
+    // Validate expression - only allow numbers, operators, parentheses, and spaces
+    if (!/^[\d+\-*/().\s]+$/.test(cleaned)) {
+      throw new Error('Invalid expression');
+    }
+
+    // Evaluate the expression using Function constructor
+    const evaluated = Function(`"use strict"; return (${cleaned})`)();
+    if (typeof evaluated !== "number" || isNaN(evaluated)) {
+        throw new Error("Invalid expression");
+      }
+
+      this.result = evaluated;
+      return this.result;
+  }
+}
 
 module.exports = Calculator;
